@@ -59,7 +59,7 @@ ax.set(xlabel = 'Antal år', ylabel = 'Opsparing i millioner dkk')
 # =============================================================================
 # praktisk med usikkerhed
 # =============================================================================
-c25 = pd.read_csv("C:/Users/Wilso/Desktop/c25.csv", sep = ";", encoding="UTF-8", decimal= ",")
+c25 = pd.read_csv("data/c25.csv", sep = ";", encoding="UTF-8", decimal= ",")
 c25["Date"]  = pd.to_datetime(c25.Date)
 c25["Day"]   = c25["Date"].dt.day
 c25["Month"] = c25["Date"].dt.month
