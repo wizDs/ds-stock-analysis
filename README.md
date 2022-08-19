@@ -1,12 +1,12 @@
 # Getting started
 
 ``` bash
-python3 -m venv env
-source env/bin/Activate
-python3 -m pip install --upgrade pip
-python3 -m pip install --upgrade build
-python3 -m pip install -r requirements.txt 
-python3 -m pip install .
+python -m venv env
+source env/Scripts/Activate
+python -m pip install --upgrade pip
+python -m pip install --upgrade build
+python -m pip install -r requirements.txt 
+python -m pip install --editable .
 ipython kernel install --user --name=stock-analysis
 ```
 
