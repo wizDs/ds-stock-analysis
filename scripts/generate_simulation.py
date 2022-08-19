@@ -1,9 +1,13 @@
+import sys
 import json
 import pathlib
-from etl.calculate_returns import generate_returns
-from etl.simulate_returns import simulate_path
+import logging
+from path_simulation import generate_returns, simulate_path
+
 
 if __name__ == '__main__':
+    logging.basicConfig(stream = sys.stdout, level = logging.INFO)
+
     path = pathlib.Path("data/c25.csv")
     returns = generate_returns(path)
 
@@ -20,3 +24,5 @@ if __name__ == '__main__':
 
     with open(path.parent / f'realized-paths-{periods}.json', "w") as file:
         json.dump(realized_paths, file)
+
+    logging.info(f'{n_paths} paths with {periods} periods simulated from sample distribution')
