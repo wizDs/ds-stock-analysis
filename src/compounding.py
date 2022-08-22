@@ -10,24 +10,43 @@ from collections.abc import Sequence
 class Saving:
     time: int
     total: float
-    
-def compound_formula(saldo: float, interest: float, saving: float) -> float:
-    return (saldo + saving) * (1 + interest)
 
 def compound(interest_rates: list[float], saving: int=5_000, initial_saving: float=0) -> float:
+    """
+    This function uses the compound formula and calculates
+    the total saving after arbitrary time period with a fixed 
+    saving each month.
+    """
     return reduce(
         partial(compound_formula, saving=saving), 
         interest_rates, 
         initial_saving
     )
 
+
 def saving_summary(interest_rates: list[float], saving: int=5_000, initial_saving: float=0) -> Sequence[Saving]:
+    """
+    This function uses the compound formula and calculates
+    the total savings over time, for each time the compound 
+    formula is used.
+    """
     saving_over_time = accumulate(
         interest_rates, 
         partial(compound_formula, saving=saving), 
         initial=initial_saving
     )
     return starmap(Saving, enumerate(saving_over_time))
+    
+
+def compound_formula(saldo: float, interest: float, saving: float) -> float:
+    """
+    The compounding formula for each time period. For each 
+    period the savings which is added each month and long 
+    term savings are compounded with some interest rate.
+    """
+    return (saldo + saving) * (1 + interest)
+
+
 
 if __name__ == '__main__':
     saving_rate = 3000
